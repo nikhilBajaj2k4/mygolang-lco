@@ -17,5 +17,5 @@ func main() {
 	}
 	
 	fmt.Printf("%T\n", resp)
-	resp.Body.Close()
+	resp.Body.Close() // reminder: Always close the request
 }
