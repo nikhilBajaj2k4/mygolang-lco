@@ -8,7 +8,7 @@ import (
 const url = "https://lco.dev"
 
 func main() {
-	fmt.Println("request")
+	fmt.Println("Web Request")
 
 	resp, err := http.Get(url)
 
