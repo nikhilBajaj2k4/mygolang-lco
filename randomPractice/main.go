@@ -1,19 +1,26 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"io"
+	"os"
+)
 
 func main() {
-	defer fmt.Println("Pehla")
-	defer fmt.Println("Doosra")
-	defer fmt.Println("Teesra")
-
-	fmt.Println("Wan")
-	MyDefer()
-	// Wan, 43210, Teesra, Doosra, Pehla
-}
-
-func MyDefer() {
-	for i := 0; i < 5; i++ {
-		defer fmt.Println(i)
+	fmt.Println("Welcome")
+	content := "Ye ek piece of content he, writing to be specific"
+	
+	file, err := os.Create("./file.txt")
+	if err != nil {
+		panic(err)
 	}
+
+	length, err := io.WriteString(file, content)
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println("Length is ", length)
+	defer file.Close()
 }
+ 
