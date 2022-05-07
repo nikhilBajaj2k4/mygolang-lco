@@ -15,16 +15,15 @@ func main() {
 		panic(err)
 	}
 
-	// fmt.Println("Scheme: ", result.Scheme)
-	// fmt.Println("Path: ", result.Path)
-	// fmt.Println("Host: ", result.Host)
-	// fmt.Println("Port: ", result.Port())
-	// fmt.Println("Raw Query: ", result.RawQuery)
+	fmt.Println("Scheme: ", result.Scheme)
+	fmt.Println("Path: ", result.Path)
+	fmt.Println("Host: ", result.Host)
+	fmt.Println("Port: ", result.Port())
+	fmt.Println("Raw Query: ", result.RawQuery)
 
 	qparams := result.Query() // stores queries in a better format
 	fmt.Printf("Type is: %T\n", qparams) // %T shows the type // Output url.Values (Key Values)
 
-	fmt.Println(qparams["courname"]) //returns reactjs
+	fmt.Println(qparams["coursename"]) //returns reactjs
 
-	
 }
