@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"net/url"
 	"strings"
 )
 
@@ -22,7 +23,7 @@ func PerformGetRequest(url string){
 	}
 
 	content, _ := ioutil.ReadAll(resp.Body)
-	// fmt.Println(content)
+	fmt.Println(content)
 	fmt.Println(string(content)) 
 
 	defer resp.Body.Close()
@@ -34,5 +35,50 @@ func PerformGetRequest(url string){
 	byteCount, _ := responseString.Write(content)
 	fmt.Println(byteCount)
 	fmt.Println(responseString.String())
+}
 
+func PerformPostJsonRequest() {
+	const myurl = "http://localhost:8000/post"
+
+	//fake json payload
+
+	requestBody := strings.NewReader(`
+		{
+			"coursename":"Let's go with golang",
+			"price": 0,
+			"platform":"learnCodeOnline.in"
+		}
+	`)
+
+	response, err := http.Post(myurl, "application/json", requestBody)
+
+	if err != nil {
+		panic(err)
+	}
+	defer response.Body.Close()
+
+	content, _ := ioutil.ReadAll(response.Body)
+
+	fmt.Println(string(content))
+}
+
+func PerformPostFormRequest() {
+	const myurl = "http://localhost:8000/postform"
+
+	//formdata
+
+	data := url.Values{}
+	data.Add("firstname", "hitesh")
+	data.Add("lastname", "choudhary")
+	data.Add("email", "hitesh@go.dev")
+
+	response, err := http.PostForm(myurl, data)
+	if err != nil {
+		panic(err)
+	}
+
+	defer response.Body.Close()
+
+	content, _ := ioutil.ReadAll(response.Body)
+	fmt.Println(string(content))
 }
