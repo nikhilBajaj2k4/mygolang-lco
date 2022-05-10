@@ -10,7 +10,9 @@ import (
 
 func main() {
 	fmt.Println("Welcome to get request wala video")
-	PerformGetRequest("http://localhost:8000/get")
+	// PerformGetRequest("http://localhost:8000/get")
+	// PerformPostJsonRequest()
+	PerformPostFormRequest()
 }
 
 func PerformGetRequest(url string){
@@ -44,7 +46,7 @@ func PerformPostJsonRequest() {
 
 	requestBody := strings.NewReader(`
 		{
-			"coursename":"Let's go with golang",
+			"coursename":"Let's go go goa with golang",
 			"price": 0,
 			"platform":"learnCodeOnline.in"
 		}
@@ -70,7 +72,7 @@ func PerformPostFormRequest() {
 	data := url.Values{}
 	data.Add("firstname", "hitesh")
 	data.Add("lastname", "choudhary")
-	data.Add("email", "hitesh@go.dev")
+	data.Add("email", "hitesh@goa.dev")
 
 	response, err := http.PostForm(myurl, data)
 	if err != nil {
