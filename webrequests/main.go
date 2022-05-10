@@ -12,7 +12,6 @@ func main() {
 	fmt.Println("Web Request")
 
 	resp, err := http.Get(url)
-
 	if err != nil {
 		panic(err)
 	}
@@ -21,7 +20,6 @@ func main() {
 	defer resp.Body.Close() // reminder: Always close the request
 
 	databytes, err := ioutil.ReadAll(resp.Body)
-	
 	if err != nil {
 		panic(err)
 	}
